@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+__test-stderr() {
+  [ -n "$(echo-ng 2>&1 > /dev/null)" ] || return 1
+}
+
+. .test-all __test-
