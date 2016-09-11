@@ -29,4 +29,4 @@ __test-abort() {
   return $err
 }
 
-. .test-all __test-
+. test-all.bash __test-

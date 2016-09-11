@@ -10,4 +10,4 @@ __test-ng() {
   [ $? -eq 5 ] || return 1
 }
 
-. .test-all __test-
+. test-all.bash __test-

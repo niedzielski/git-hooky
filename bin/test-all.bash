@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 err=0
 for test in $(compgen -A function "$@"); do
   "$test" &&:

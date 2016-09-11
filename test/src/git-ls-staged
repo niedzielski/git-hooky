@@ -78,4 +78,4 @@ __test-git-ls-staged-unstaged() {
   return $err
 }
 
-. .test-all __test-
+. test-all.bash __test-
