@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-. "$(dirname "$0")/../bin/prompt"
+. "$(dirname "$0")/../../bin/prompt"
 
 __test-yes() {
   local err=0

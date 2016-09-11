@@ -7,7 +7,7 @@
   "repository": "github:rndmem/git-hooky",
   "bugs": "https://github.com/rndmem/git-hooky/issues",
   "scripts": {
-    "test": "err=0; for test in test/*; do \"$test\" &&:; echo-stat $? \"$test\" || err=$((err+1)); done; exit $err",
+    "test": "err=0; for test in test/src/*; do \"$test\" &&:; echo-stat $? \"$test\" || err=$((err+1)); done; exit $err",
     "preversion": "npmr test",
     "postversion": "git push origin master --follow-tags && npm publish"
   },
