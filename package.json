@@ -1,0 +1,16 @@
+{
+  "name": "git-hooky",
+  "version": "0.0.0",
+  "description": "A collection of Git hooks and utilities.",
+  "keywords": [
+    "git",
+    "hook"
+  ],
+  "homepage": "https://github.com/rndmem/git-hooky",
+  "repository": "github:rndmem/git-hooky",
+  "bugs": "https://github.com/rndmem/git-hooky/issues",
+  "engines": {
+    "node": "6.5.0"
+  },
+  "license": "GPL-3.0"
+}
