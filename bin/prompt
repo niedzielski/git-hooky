@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+main() {
+  exec < /dev/tty
+  prompt "$@"
+}
+
+prompt() {
+  read -rp "$* [y]es, [s]kip, [a]bort: " rsp
+  case "$rsp" in
+    Y|y|'') : ;;
+    S|s) return 1 ;;
+    *) return 2;
+  esac
+}
+
+return 2>/dev/null || main "$@"

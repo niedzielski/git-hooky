@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+. "$(dirname "$0")/../bin/prompt"
+
+__test-yes() {
+  local err=0
+  for rsp in y Y ''; do
+    prompt <<< "$rsp" || ((++err))
+  done
+  return $err
+}
+
+__test-skip() {
+  local err=0
+  for rsp in s S; do
+    prompt <<< "$rsp" &&:
+    [ $? -eq 1 ] || ((++err))
+  done
+  return $err
+}
+
+__test-abort() {
+  local err=0
+  for rsp in a b; do
+    prompt <<< "$rsp" &&:
+    [ $? -eq 2 ] || ((++err))
+  done
+  return $err
+}
+
+. .test-all __test-
