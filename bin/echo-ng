@@ -1,0 +1,2 @@
+#!/bin/sh
+exec echo -e "\e[31m✗\e[00m" "$@" >&2

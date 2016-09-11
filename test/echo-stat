@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+__test-ok() {
+  echo-stat 0 > /dev/null || return 1
+}
+
+__test-ng() {
+  echo-stat 5 2> /dev/null &&:
+  [ $? -eq 5 ] || return 1
+}
+
+err=0
+for test in $(compgen -A function __test-); do
+  "$test" &&:
+  echo-stat $? "$test" || ((++err))
+done
+exit $err
