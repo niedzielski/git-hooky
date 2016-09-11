@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+COMMITTED_FILE="$(dirname "$0")/../fixture/committed"
+
+__test-git-ls-staged-add() {
+  touch tmp
+  git add tmp
+
+  local err=0
+  [[ "$(git-ls-staged)" -ef tmp ]] || err=$?
+
+  git rm -fq tmp
+  return $err
+}
+
+__test-git-ls-staged-add2() {
+  touch tmp0 tmp1
+  git add tmp0 tmp1
+
+  local err=0
+  [[ "$(git-ls-staged)" == tmp0tmp1 ]] || err=$?
+
+  git rm -fq tmp0 tmp1
+  return $err
+}
+
+__test-git-ls-staged-rm() {
+  git rm -q "$COMMITTED_FILE"
+
+  local err=0
+  [[ -z "$(git-ls-staged)" ]] || err=$?
+
+  git checkout HEAD "$COMMITTED_FILE"
+  return $err
+}
+
+__test-git-ls-staged-mod() {
+  echo > "$COMMITTED_FILE"
+  git add "$COMMITTED_FILE"
+
+  local err=0
+  [[ "$(git-ls-staged)" -ef "$COMMITTED_FILE" ]] || err=$?
+
+  git checkout HEAD "$COMMITTED_FILE"
+  return $err
+}
+
+__test-git-ls-staged-rename() {
+  local rename="$COMMITTED_FILE.rename"
+  git mv "$COMMITTED_FILE" "$rename"
+
+  local err=0
+  [[ "$(git-ls-staged)" -ef "$rename" ]] || err=$?
+
+  git mv "$rename" "$COMMITTED_FILE"
+  return $err
+}
+
+__test-git-ls-staged-glob() {
+  touch tmp0 tmp1
+  git add tmp0 tmp1
+
+  local err=0
+  [[ "$(git-ls-staged \*0)" -ef tmp0 ]] || err=$?
+
+  git rm -fq tmp0 tmp1
+  return $err
+}
+
+__test-git-ls-staged-unstaged() {
+  touch tmp
+
+  local err=0
+  [[ -z "$(git-ls-staged)" ]] || err=$?
+
+  rm tmp
+  return $err
+}
+
+. .test-all __test-

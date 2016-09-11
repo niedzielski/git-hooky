@@ -1,0 +1,4 @@
+#!/bin/sh
+# output is null delimited
+# $@ glob
+exec git diff --cached -C -C -z --name-only --diff-filter=ACMRTUXB "$@"
