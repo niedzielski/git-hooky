@@ -2,13 +2,15 @@
   "name": "git-hooky",
   "version": "0.0.0",
   "description": "A collection of Git hooks and utilities.",
-  "keywords": [
-    "git",
-    "hook"
-  ],
+  "keywords": ["git", "hook"],
   "homepage": "https://github.com/rndmem/git-hooky",
   "repository": "github:rndmem/git-hooky",
   "bugs": "https://github.com/rndmem/git-hooky/issues",
+  "scripts": {
+    "test": "err=0; for test in test/*; do \"$test\" &&:; echo-stat $? \"$test\" || err=$((err+1)); done; exit $err",
+    "preversion": "npmr test",
+    "postversion": "git push origin master --follow-tags && npm publish"
+  },
   "engines": {
     "node": "6.5.0"
   },
