@@ -1,4 +1,4 @@
 #!/bin/sh
-stat=$1; shift
+stat="$1"; shift
 [ "$stat" = 0 ] && echo-ok "$@" || echo-ng "$@"
-exit $stat
+exit "$stat"
