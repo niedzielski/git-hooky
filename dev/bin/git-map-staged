@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# $1 glob
+# $@ cmd where $file refers to the original filename
+# stdin is null delimited
+set -euo pipefail
+
+# $1 name
+map() { IFS= read -rd $'\0' "$@"; }
+
+glob="$1"; shift
+err=0
+while map file; do
+  git-cat-staged "$file" | "$@" &&:
+  echo-stat $? "$path" || ((++err))
+done < <(git-ls-staged "$glob")
+exit $err

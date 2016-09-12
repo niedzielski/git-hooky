@@ -1,0 +1,4 @@
+exec eslint --cache --max-warnings 0
+# --stdin --stdin-filename
+#--fix
+this should be an optional dev dependency. just call eslint or 0lint and if it's there it's there.

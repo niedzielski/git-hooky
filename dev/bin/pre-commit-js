@@ -1,0 +1,2 @@
+#!/bin/sh
+exec git-map-staged \*.js '0lint --stdin --stdin-filename "$file"' 

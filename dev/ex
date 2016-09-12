@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+pre-commit-prompt || exit [ $? -eq 1 ]
+pre-commit-all
+pre-commit-js

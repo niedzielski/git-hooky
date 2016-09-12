@@ -1,0 +1,6 @@
+
+__test-map() {
+  local lines=0
+  while map line; do ((++lines)); done < <(echo -en '\0\0\0')
+  [[ lines -eq 3 ]] || return 1
+}

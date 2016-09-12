@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# hooks has pre-commit stuff
+# hooks needs to def9ne 0lint :|
+# eslint-config-rndmem needs to depend on hooks-base
+# wgat to do about bin everywhere? this is broken
+
+__test-none() {
+  git-cat-staged <<< "$rsp" || ((++err))
+}
+
+__test-one() {
+  touch tmp
+  git add tmp
+  echo A > fixture/commited0
+  git-cat-staged <<< "$rsp" || ((++err))
+}
+
+__test-one() {
+  echo A > fixture/commited0
+  echo B > fixture/commited1
+  git-cat-staged <<< "$rsp" || ((++err))
+}
+
+__test-two() {
+  echo A > fixture/commited0
+  echo B > fixture/commited1
+  git-cat-staged fixture/commited0 fixture/commited1 <<< "$rsp" || ((++err))
+}
+
+. test-all.bash __test-
