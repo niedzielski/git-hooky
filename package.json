@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "description": "A collection of Git hooks and utilities.",
   "keywords": ["git", "hook"],
-  "homepage": "https://github.com/rndmem/git-hooky",
-  "repository": "github:rndmem/git-hooky",
-  "bugs": "https://github.com/rndmem/git-hooky/issues",
+  "homepage": "https://github.com/niedzielski/git-hooky",
+  "repository": "github:niedzielski/git-hooky",
+  "bugs": "https://github.com/niedzielski/git-hooky/issues",
   "scripts": {
     "test": "err=0; for test in test/src/*; do \"$test\" &&:; echo-stat $? \"$test\" || err=$((err+1)); done; exit $err",
     "preversion": "npmr test",
